@@ -16,7 +16,7 @@
 </body>
 </html> --}}
  
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Data User</title>
@@ -39,9 +39,9 @@
         </tr>
     </table>
 </body>
-</html>
+</html> --}}
 
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Data User</title>
@@ -63,9 +63,9 @@
                 <td>{{ $d->username }}</td>
                 <td>{{ $d->nama }}</td>
                 <td>{{ $d->level_id }}</td>
-                <td><a href="/user/tambah{{ $d->user_id }}">Ubah</a> | <a href="/user/tambah{{ $d->user_id }}">Hapus</a></td>
+                <td><a href="/user/ubah{{ $d->user_id }}">Ubah</a> | <a href="/user/hapus{{ $d->user_id }}">Hapus</a></td>
             </tr>
         @endforeach
     </table>
 </body>
-</html> --}}
+</html>

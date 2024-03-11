@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
-    {
+    // public function index()
+    // {
         // tambah data user dengan Eloquent Model 
         // $data = [
         //     'level_id' => 2,
@@ -76,27 +76,42 @@ class UserController extends Controller
         // return view('user', ['data' => $user]);
 
         // prak 2.5 
-        $user = UserModel::create([
-            'username' => 'manager66',
-            'nama' => 'Manager57',
-            'password' => Hash::make('12345'),
-            'level_id' => 2,
-        ]);
-        $user->username = 'manager22';
+        // $user = UserModel::create([
+        //     'username' => 'manager66',
+        //     'nama' => 'Manager57',
+        //     'password' => Hash::make('12345'),
+        //     'level_id' => 2,
+        // ]);
+        // $user->username = 'manager22';
 
-        $user->save();
+        // $user->save();
 
-        $user->wasChanged(); // true
-        $user->wasChanged('username'); // true
-        $user->wasChanged(['username', 'level_id']); // true
-        $user->wasChanged('nama'); //false
-        dd($user->wasChanged(['nama', 'username'])); // true
+        // $user->wasChanged(); // true
+        // $user->wasChanged('username'); // true
+        // $user->wasChanged(['username', 'level_id']); // true
+        // $user->wasChanged('nama'); //false
+        // dd($user->wasChanged(['nama', 'username'])); // true
 
-        // $user = UserModel::all();
-        // return view('user', ['data' => $user]);
+    // }
+
+    // praktikum 2.6
+    public function index() {
+        $user = UserModel::all();
+        return view('user', ['data' => $user]);
     }
 
-    // public function tambah() {
-    //     return view('user_tambah');
-    // }
+    public function tambah() {
+        return view('user_tambah');
+    }
+
+    public function tambah_simpan(Request $request) {
+        UserModel::create([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => Hash::make('$request->password'),
+            'level_id' => $request->level_id
+        ]);
+
+        return redirect('/user');
+    }
 }
