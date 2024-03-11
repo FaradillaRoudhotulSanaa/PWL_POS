@@ -95,10 +95,10 @@ class UserController extends Controller
     // }
 
     // praktikum 2.6
-    public function index() {
-        $user = UserModel::all();
-        return view('user', ['data' => $user]);
-    }
+    // public function index() {
+    //     $user = UserModel::all();
+    //     return view('user', ['data' => $user]);
+    // }
 
     public function tambah() {
         return view('user_tambah');
@@ -138,5 +138,11 @@ class UserController extends Controller
         $user->delete();
 
         return redirect('/user');
+    }
+
+    // praktikum 2.7 
+    public function index() {
+        $user = UserModel::with('level')->get();
+        return view('user', ['data' => $user]);
     }
 }
