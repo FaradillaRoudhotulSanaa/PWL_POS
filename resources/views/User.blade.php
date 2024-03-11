@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Data User</title>
@@ -15,9 +14,9 @@
         </tr>
     </table>
 </body>
-</html>
+</html> --}}
  
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Data User</title>
@@ -40,7 +39,7 @@
         </tr>
     </table>
 </body>
-</html> --}}
+</html>
 
 {{-- <!DOCTYPE html>
 <html lang="en">
