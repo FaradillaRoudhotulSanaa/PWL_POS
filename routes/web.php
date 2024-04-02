@@ -3,6 +3,7 @@
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\POSController;
 use App\Http\Controllers\UserController;
 use App\Models\KategoriModel;
 
@@ -22,20 +23,16 @@ Route::get('/', function () {
 });
 
 Route::get('/level', [LevelController::class, 'index']);
+Route::post('/level/store', [LevelController::class, 'store'])->name('level.store');
 
 Route::get('/kategori', [KategoriController::class, 'index']);
 
-Route::get('/user', [UserController::class, 'index']);
-
-Route::get('/user/tambah', [UserController::class, 'tambah']);
-
-Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
-
-Route::get('/ubah/ubah/{id}', [UserController::class, 'ubah']);
-
-Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
-
-Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
+// Route::get('/user', [UserController::class, 'index']);
+// Route::get('/user/tambah', [UserController::class, 'tambah']);
+// Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
+// Route::get('/ubah/ubah/{id}', [UserController::class, 'ubah']);
+// Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
+// Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
 
 Route::get('/kategori', [KategoriController::class, 'index']);
 
@@ -48,3 +45,17 @@ Route::get('/kategori/update/{id}', [KategoriController::class, 'update'])->name
 Route::put('/kategori/save_update/{id}', [KategoriController::class, 'save_update'])->name('/kategori/save_update');
 
 Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('/kategori/delete');
+
+//-- JOBSHEET 6 --// 
+// Manage user 
+
+Route::resource('user',POSController::class);
+
+Route::post('data_user', [POSController::class, 'storeDashboard'])->name('user.storeDashboard');
+
+// Route::get('/user', [UserController::class, 'index'])->name('user.index');
+// Route::get('/user/tambah', [UserController::class], 'tambah')->name('/user/tambah');
+// Route::get('/user/tambah_simpan', [UserController::class], 'tambah_simpan')->name('/user/tambah_simpan');
+// Route::get('/user/edit/{id}', [UserController::class, 'ubah'])->name('/user/ubah');
+// Route::get('/user/{id}', [UserController::class, 'ubah_simpan'])->name('/user/ubah_simpan');
+// Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('/user/hapus');
