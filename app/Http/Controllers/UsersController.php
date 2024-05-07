@@ -11,7 +11,8 @@ use Yajra\DataTables\Facades\DataTables;
 class UsersController extends Controller
 {
     public function index()
-    {
+    {   
+        // menampilkan title/navigasi 
         $breadcrumb = (object)[
             'title' => 'Daftar User',
             'list' => ['Home', 'User'],
@@ -65,8 +66,7 @@ class UsersController extends Controller
         return redirect('/users')->with('success','Data user berhasil disimpan');
     }
 
-    public function create()
-    {
+    public function create() {
         $breadcrumb = (object)[
             'title' => 'Tambah User',
             'list' => ['Home', 'User', 'Tambah'],
@@ -82,7 +82,7 @@ class UsersController extends Controller
         return view('layouts.user.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level,'activeMenu' => $activeMenu]);
     }
     
-    public function show(string $id){
+    public function show(string $id) {
         $user = UserModel::with('level')->find($id);
 
         $breadcrumb = (object)[

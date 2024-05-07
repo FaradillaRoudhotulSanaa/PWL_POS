@@ -99,9 +99,9 @@ Route::group(['prefix' => 'transaksi'], function () {
 // JOBSHEET 9 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::get('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
+Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
+Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 
 // atur middle dengan group routing, group mengecek kondisi login 
 Route::group(['middleware' => ['auth']], function() {

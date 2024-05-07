@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Nette\Utils\Validators;
 
-class AuthController extends Controller {
-    public function index() {
+class AuthController extends Controller
+{
+    public function index()
+    {
         // mengambil data user, disimpan di $user
         $user = Auth::user();
 
@@ -20,7 +22,7 @@ class AuthController extends Controller {
             // jika level user admin 
             if ($user->level_id == '1') {
                 return redirect()->intended('admin');
-            } 
+            }
             // jika level user manager 
             else if ($user->level == '2') {
                 return redirect()->intended('manager');
@@ -29,7 +31,8 @@ class AuthController extends Controller {
         return view('login');
     }
 
-    public function proses_login(Request $request) {
+    public function proses_login(Request $request)
+    {
         // bikin validasi, username dan password wajib diisi 
         $request->validate([
             'username' => 'required',
@@ -37,10 +40,10 @@ class AuthController extends Controller {
         ]);
 
         // ambil data req username dan password aja 
-        $credential = $request->only('username', 'password');
+        $credentials = $request->only('username', 'password');
 
         // cek username dan password sesuai data 
-        if (Auth::attempt($credential)) {
+        if (Auth::attempt($credentials)) {
             // kalo berhasil simpan data user di $user 
             $user = Auth::user();
 
@@ -55,22 +58,24 @@ class AuthController extends Controller {
                 return redirect()->intended('manager');
             }
             // jika gada role ke halaman /
-            return redirect()->intended('/'); 
+            return redirect()->intended('/');
         }
 
         // jika data ga valid maka balik ke halaman login, pastikan kirim pesan error kalo gagal 
         return redirect('login')
             ->withInput()
-            ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukkan sudah benar']); 
+            ->withErrors(['login_gagal' => 'Pastikan kembali username dan password yang dimasukkan sudah benar']);
     }
 
-    public function register() {
+    public function register()
+    {
         // tampilkan view register 
         return view('register');
     }
 
     // aksi form register 
-    public function proses_register(Request $request) {
+    public function proses_register(Request $request)
+    {
         // buat validasi untuk register, semua field wajib diisi, usernmae harus unik dan tidak duplicate 
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
@@ -93,7 +98,8 @@ class AuthController extends Controller {
         UserModel::create($request->all());
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         // logout harus hapus session 
         $request->session()->flush();
 

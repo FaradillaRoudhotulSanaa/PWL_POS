@@ -15,7 +15,7 @@ class Cek_login {
      */
     public function handle(Request $request, Closure $next, $roles): Response {
         // cek login sudah atau belum 
-        if (Auth::check()) {
+        if (!Auth::check()) {
             return redirect('login');
         }
 
