@@ -1,21 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\UserModel;
-use App\Models\UserModel as ModelsUserModel;
 use Illuminate\Http\Request;
+use App\Models\PenjualanModel;
+use App\Models\UserModel;
+use App\Http\Controllers\Controller;
 USE Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 
-class RegisterController extends Controller {
+class PenjualanController extends Controller {
     public function __invoke(Request $request) {
         //set validation
         $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'nama' => 'required',
-            'password'=> 'required|min:5|confirmed',
-            'level_id' => 'required',
+            'user_id' => 'required',
+            'pembeli' => 'required',
+            'penjualan_tanggal' => 'required',
             'image' => 'required',
         ]);
         
@@ -28,11 +27,10 @@ class RegisterController extends Controller {
         $image = $request->file('image');
         
         //create user
-        $user = ModelsUserModel::create([
-            'username' => $request->username,
-            'nama' => $request->nama,
-            'password' => bcrypt($request->password),
-            'level_id'=> $request->level_id,
+        $user = PenjualanModel::create([
+            'user_id' => $request->user_id,
+            'pembeli' => $request->pembeli,
+            'penjualan_tanggal'=> $request->penjualan_tanggal,
             'image' => $image->hashName(),
         ]);
 

@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\BarangController;
+use App\Http\Controllers\Api\PenjualanController;
+use App\Models\PenjualanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -61,3 +63,17 @@ Route::post('barang', [BarangController::class, 'store']);
 Route::get('barang/{barang}', [BarangController::class, 'show']);
 Route::put('barang/{barang}', [BarangController::class, 'update']);
 Route::delete('barang/{barang}', [BarangController::class, 'destroy']);
+
+// Jobsheet 11 
+Route::post('/register1', RegisterController::class)->name('register1');
+Route::post('/barang1', BarangController::class)->name('barang1');
+Route::get('/barang1', BarangController::class, 'index')->name('barang1');
+Route::post('/penjualan1', PenjualanController::class)->name('penjualan1');
+Route::get('/penjualan1', function () {
+    $penjualan = PenjualanModel::all();
+
+    return response()->json([
+        'success' => true,
+        'data' => $penjualan,
+    ]);
+});
